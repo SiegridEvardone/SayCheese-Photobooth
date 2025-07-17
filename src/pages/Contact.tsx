@@ -23,6 +23,7 @@ export default function Contact() {
       )
        .then(
       () => {
+        setSent(true);
         alert("Message sent successfully!");
       },
       () => {
