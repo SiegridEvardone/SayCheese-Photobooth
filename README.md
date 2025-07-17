@@ -1,3 +1,21 @@
+
+# SayCheese! 📸 - Photo Booth Web App
+
+SayCheese! is a fun, interactive photo booth web app built with **React**, **TypeScript**, and **Tailwind CSS**. Designed with love 💛, it lets users capture photos from their webcam, customize them with filters, stickers, and frames, and download photo strips in different layouts.
+
+## 🌟 Features
+
+- 📷 Open webcam and take photos with countdown
+- 🎨 Apply filters and mirror effect
+- 🖼️ Customize frames with colors, stickers, and text
+- 🧱 Choose between 3, 4, or 6-photo layouts
+- 📥 Download the final photo strip
+- 📨 Contact form with EmailJS integration
+- 🎁 Sweet surprise section made for someone special 💌
+- 🖤 Responsive design with smooth animations
+- 🌐 Built using React, TypeScript, Tailwind, Zustand, and Framer Motion
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
