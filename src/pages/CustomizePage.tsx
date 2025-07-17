@@ -82,7 +82,7 @@ const downloadStrip = async () => {
         </div>
         <div className="flex flex-col sm:flex-row gap-1">
           {/* Left Panel */}
-          <div className="flex-1 flex flex-col gap-1 w-full h-full">
+          <div className="flex-1 flex flex-col gap-1 w-full min-h-full">
             <div className="bg-[#F4F4F2] border-4 rounded  border-white p-5">
               <p className="font-semibold ">Frame Background:</p>
               <input
@@ -173,19 +173,22 @@ const downloadStrip = async () => {
               </div>
             </div>
 
-            <div className="flex gap-2 bg-[#F4F4F2] border-4 rounded sm:rounded-bl-2xl border-white p-5">
-              <button
+            <div className="flex grow gap-2 items-end bg-[#F4F4F2] border-4 rounded sm:rounded-bl-2xl border-white p-5">
+              <div className="flex gap-2">
+                <button
                 onClick={retakeAndGoBack}
                 className="bg-red-400 hover:bg-red-500 text-xs sm:text-base font-bold py-2 px-6 rounded shadow w-fit"
               >
-                Retake
-              </button>
-              <button
-                onClick={downloadStrip}
-                className="bg-yellow-500 hover:bg-yellow-600 text-xs sm:text-base font-bold py-2 px-6 rounded shadow w-fit"
-              >
-                Save
-              </button>
+                  Retake
+                </button>
+                <button
+                  onClick={downloadStrip}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-xs sm:text-base font-bold py-2 px-6 rounded shadow w-fit"
+                >
+                  Save
+                </button>
+              </div>
+            
             </div>
           </div>
 
