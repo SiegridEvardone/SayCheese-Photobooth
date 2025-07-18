@@ -33,11 +33,11 @@ export default function Contact() {
 };
   return (
     <div className="min-h-screen py-1 px-2 sm:px-5 bg-[#E8E8E8]">
-      <div className="rounded-b-2xl p-1 h-full bg-[#BBBFCA]">
-        <div className="flex flex-col gap-1 sm:flex-row h-full">
+      <div className="rounded-b-2xl p-1 min-h-screen bg-[#BBBFCA]">
+        <div className="flex flex-col gap-1 sm:flex-row min-h-screen">
 
           {/* Left Text Panel */}
-          <div className="flex-1 rounded sm:rounded-bl-2xl p-6 sm:p-12 border-4 border-white bg-[#F4F4F2]">
+          <div className="flex-1 rounded sm:rounded-bl-2xl p-6 sm:p-12 border-4 border-white bg-[#F4F4F2] min-h-full">
             <p className="sm:text-xl font-bold mb-2">Contact</p>
             <p className="text-gray-700 text-xs md:text-base">
               We’d love to hear from you! Got a question, suggestion, or ran into an issue?
@@ -49,7 +49,7 @@ export default function Contact() {
           </div>
 
           {/* Right Form Panel */}
-          <div className="flex-1 rounded rounded-b-2xl sm:rounded-bl p-6 sm:p-12 border-4 border-white bg-[#F4F4F2]">
+          <div className="flex-1 rounded rounded-b-2xl sm:rounded-bl p-6 sm:p-12 border-4 border-white bg-[#F4F4F2] min-h-full">
             <form ref={formRef} onSubmit={sendEmail} className="flex flex-col">
               <label htmlFor="name" className="mb-1 font-semibold text-sm">Name:</label>
               <input name="name" type="text" required className="border p-2 mb-3 rounded focus:outline-[#FEBA17] bg-white" placeholder="Enter your name" />

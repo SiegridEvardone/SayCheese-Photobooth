@@ -78,35 +78,58 @@ export default function CapturePage() {
     }
   };
 
-  const capturePhoto = () => {
-    if (countdownAudioRef.current) {
-      countdownAudioRef.current.pause();
-      countdownAudioRef.current.currentTime = 0;
-    }
+const capturePhoto = () => {
+  if (countdownAudioRef.current) {
+    countdownAudioRef.current.pause();
+    countdownAudioRef.current.currentTime = 0;
+  }
 
-    const video = webcamRef.current?.video;
-    if (!video) return;
+  const video = webcamRef.current?.video;
+  if (!video) return;
 
-    const canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  // Force final photo to be landscape (600x440)
+  const finalWidth = 600;
+  const finalHeight = 440;
 
-    // Apply canvas filter
-    ctx.filter = canvasFilterMap[selectedFilter] || "none";
+  const canvas = document.createElement("canvas");
+  canvas.width = finalWidth;
+  canvas.height = finalHeight;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
 
-    // Mirror if needed
-    if (isMirrored) {
-      ctx.translate(canvas.width, 0);
-      ctx.scale(-1, 1);
-    }
+  ctx.filter = canvasFilterMap[selectedFilter] || "none";
 
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageData = canvas.toDataURL("image/jpeg");
-    addPhoto(imageData);
-    playShutterSound();
-  };
+  // Mirror if needed
+  if (isMirrored) {
+    ctx.translate(finalWidth, 0);
+    ctx.scale(-1, 1);
+  }
+
+  const videoWidth = video.videoWidth;
+  const videoHeight = video.videoHeight;
+  const videoAspect = videoWidth / videoHeight;
+  const targetAspect = finalWidth / finalHeight;
+
+  let sx = 0, sy = 0, sWidth = videoWidth, sHeight = videoHeight;
+
+  // Crop the video feed to match 4:3 output aspect ratio
+  if (videoAspect > targetAspect) {
+    // Video is too wide — crop sides
+    sWidth = videoHeight * targetAspect;
+    sx = (videoWidth - sWidth) / 2;
+  } else {
+    // Video is too tall — crop top and bottom
+    sHeight = videoWidth / targetAspect;
+    sy = (videoHeight - sHeight) / 2;
+  }
+
+  ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, finalWidth, finalHeight);
+
+  const imageData = canvas.toDataURL("image/jpeg");
+  addPhoto(imageData);
+  playShutterSound();
+};
+
 
   useEffect(() => {
     resetPhotos();
@@ -165,7 +188,7 @@ export default function CapturePage() {
 
   return (
     <div className="min-h-screen bg-[#E8E8E8] px-2 py-1 sm:px-5">
-      <div className="p-1 flex flex-col gap-1 bg-[#BBBFCA] rounded-b-2xl">
+      <div className="p-1 flex flex-col gap-1 bg-[#3d4353] rounded-b-2xl">
         <div className="border-4 border-white rounded p-6 sm:p-12 bg-[#F4F4F2] ">
           <div className="flex flex-col sm:flex-row gap-2 justify-center">
             <div>
@@ -184,6 +207,12 @@ export default function CapturePage() {
                   videoConstraints={videoConstraints}
                   mirrored={isMirrored}
                   className={`rounded-lg border-4 border-yellow-400 shadow-xl ${selectedFilter}`}
+                   style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    aspectRatio: "4 / 3", // Ensures consistency
+                    objectFit: "cover"
+                  }}
                 />
 
                 {countdown !== null && countdown > 0 && (
