@@ -25,7 +25,7 @@ export default function Navbar() {
               <p className="text-2xl mb-[-8px] font-extrabold text-[#FEBA17]">
                 <Link to="/" className={isActive("/")}>SayCheese!</Link>
               </p>
-              <p className="text-xs">Photo-booth</p>
+              <p className="text-xs">Photobooth</p>
             </div>
 
             {/* Desktop Nav */}

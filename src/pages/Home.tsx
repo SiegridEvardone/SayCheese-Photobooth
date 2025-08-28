@@ -16,7 +16,7 @@ export default function Home() {
             <div className="flex-1">
               <p className="lg:text-3xl lg:my-4">Whether it's a party or just for fun —
               bring your moments to life with 
-              <span className="text-[#FEBA17] font-bold"> SayCheese!</span> Photo-booth.</p>
+              <span className="text-[#FEBA17] font-bold"> SayCheese!</span> Photobooth.</p>
               <div className="mt-1 sm:text-lg">
                 <p>✨ Easy to Use</p>
                 <p>🎨 Customize Everything</p>
