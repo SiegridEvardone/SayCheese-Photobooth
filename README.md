@@ -15,6 +15,8 @@ SayCheese! is a fun, interactive photo booth web app built with **React**, **Typ
 - 🖤 Responsive design with smooth animations
 - 🌐 Built using React, TypeScript, Tailwind, Zustand, and Framer Motion
 
+# Live Url
+- https://saycheese-photobooth.vercel.app/
 
 # React + TypeScript + Vite
 
